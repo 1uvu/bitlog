@@ -21,20 +21,20 @@ type (
 		*/
 		Output *OutputConfig `mapstructure:"output"`
 
-		/*
-			mode configs
-		*/
-		Mode RunMode `mapstructure:"mode"`
-		// for block mode
-		BlockCount int64 `mapstructure:"blockCount"`
-		// for duration mode
-		Period   string `mapstructure:"period"`
-		Duration string `mapstructure:"duration"`
+		///*
+		//	mode configs
+		//*/
+		//Mode RunMode `mapstructure:"mode"`
+		//// for block mode
+		//BlockCount int64 `mapstructure:"blockCount"`
+		//// for duration mode
+		//Period   string `mapstructure:"period"`
+		//Duration string `mapstructure:"duration"`
 
-		/*
-			type configs
-		*/
-		Type NetType `mapstructure:"type"`
+		///*
+		//	type configs
+		//*/
+		//Type NetType `mapstructure:"type"`
 	}
 	RPConfig struct {
 		Address  string `mapstructure:"address"`
@@ -47,31 +47,31 @@ type (
 	OutputConfig struct {
 		Path string `mapstructure:"path"`
 	}
-	RunMode string
-	NetType string
+	//RunMode string
+	//NetType string
 )
 
-const (
-	Once     RunMode = "once"
-	Block    RunMode = "block"
-	Duration RunMode = "duration"
-	Infinity RunMode = "infinity"
-)
-
-const (
-	Testnet NetType = "testnet"
-	Simnet  NetType = "simnet"
-	Mainnet NetType = "mainnet"
-	Signet  NetType = "signet"
-)
-
-var (
-	defaultLogPath    = "./logs"
-	defaultRunMode    = Infinity
-	defaultBlockCount = 6
-	defaultPeriod     = "5m"
-	defaultDuration   = "1h"
-)
+//const (
+//	Once     RunMode = "once"
+//	Block    RunMode = "block"
+//	Duration RunMode = "duration"
+//	Infinity RunMode = "infinity"
+//)
+//
+//const (
+//	Testnet NetType = "testnet"
+//	Simnet  NetType = "simnet"
+//	Mainnet NetType = "mainnet"
+//	Signet  NetType = "signet"
+//)
+//
+//var (
+//	defaultLogPath    = "./logs"
+//	defaultRunMode    = Infinity
+//	defaultBlockCount = 6
+//	defaultPeriod     = "5m"
+//	defaultDuration   = "1h"
+//)
 
 func (c *CollectorConfig) Complete() {
 }

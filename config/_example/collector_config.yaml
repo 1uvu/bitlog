@@ -2,15 +2,15 @@
 version: 3.0
 
 rpc:
-  address: ssh-rise1007.1uvu.com # peer1.net0.test.net
-  port: 18576
+  address: peer0.net0.mainnet
+  port: 8334
   username: admin
   password: admin
 shell:
 output:
   path: ./out
-mode: once # once, block, duration, infinity
-blockCount: 6
-period: 5m
-duration: 1h
-type: testnet # testnet, simnet, mainnet, signet
+# mode: once # once, block, duration, infinity
+# blockCount: 6
+# period: 5m
+# duration: 1h
+# type: testnet # testnet, simnet, mainnet, signet
