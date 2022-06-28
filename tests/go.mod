@@ -3,8 +3,8 @@ module github.com/1uvu/bitlog/tests
 go 1.17
 
 replace (
-	github.com/1uvu/bitlog => ./../core
-	github.com/1uvu/bitlog/collector => ./../core/collector
+	github.com/1uvu/bitlog => ./../bitlog
+	github.com/1uvu/bitlog/collector => ./../bitlog/collector
 )
 
 require (
