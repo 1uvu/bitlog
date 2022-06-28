@@ -7,9 +7,7 @@ import (
 	"github.com/1uvu/bitlog/pkg/utils"
 
 	"github.com/btcsuite/btcd/blockchain"
-	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/btcsuite/btcd/txscript"
 	"github.com/btcsuite/btcd/wire"
 	"github.com/btcsuite/btcutil"
 )
@@ -22,24 +20,9 @@ type Block struct {
 	ConnectTime  time.Time
 }
 
-func NewBlock(b *wire.MsgBlock, connectTime time.Time) *Block {
-	var genesisTX *wire.MsgTx
-	for _, tx := range b.Transactions {
-		if blockchain.IsCoinBaseTx(tx) {
-			genesisTX = tx
-			break
-		}
-	}
-	minerAddress := func(tx *wire.MsgTx) btcutil.Address {
-		var minerAddress btcutil.Address
-		for _, out := range tx.TxOut {
-			_, minerAddresses, _, _ := txscript.ExtractPkScriptAddrs(out.PkScript, &chaincfg.TestNet3Params)
-			if len(minerAddresses) > 0 {
-				minerAddress = minerAddresses[0]
-			}
-		}
-		return minerAddress
-	}(genesisTX)
+func ParseBlock(b *wire.MsgBlock, connectTime time.Time) *Block {
+	genesisTX := ParseGenesisTX(b)
+	minerAddress := ParseMinerAddress(genesisTX)
 	return &Block{
 		MinerAddress: minerAddress,
 		BlockHash:    b.BlockHash(),
@@ -58,4 +41,15 @@ func (b *Block) String() string {
 		b.Txn,
 		utils.TimeStrLocal(b.ConnectTime),
 	)
+}
+
+func ParseGenesisTX(b *wire.MsgBlock) *wire.MsgTx {
+	var genesisTX *wire.MsgTx
+	for _, tx := range b.Transactions {
+		if blockchain.IsCoinBaseTx(tx) {
+			genesisTX = tx
+			break
+		}
+	}
+	return genesisTX
 }
