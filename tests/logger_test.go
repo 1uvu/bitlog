@@ -3,7 +3,7 @@ package tests
 import (
 	"testing"
 
-	"github.com/1uvu/bitlog/core/pkg/logger"
+	"github.com/1uvu/bitlog/pkg/logger"
 )
 
 func TestGetCMDLogger(t *testing.T) {

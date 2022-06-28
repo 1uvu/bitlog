@@ -6,7 +6,7 @@ import (
 	"math/rand"
 	"sync"
 
-	"github.com/1uvu/bitlog/core/collector/conn"
+	"github.com/1uvu/bitlog/collector/conn"
 )
 
 // Put on hold

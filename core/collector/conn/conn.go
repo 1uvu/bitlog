@@ -3,8 +3,8 @@ package conn
 import (
 	"sync"
 
-	"github.com/1uvu/bitlog/core/collector/clientmgr"
-	"github.com/1uvu/bitlog/core/pkg/config"
+	"github.com/1uvu/bitlog/collector/clientmgr"
+	"github.com/1uvu/bitlog/pkg/config"
 )
 
 type RPConn struct {

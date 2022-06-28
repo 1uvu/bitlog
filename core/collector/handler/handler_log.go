@@ -4,9 +4,9 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/1uvu/bitlog/core/collector/clientmgr"
-	"github.com/1uvu/bitlog/core/collector/event"
-	"github.com/1uvu/bitlog/core/pkg/pool"
+	"github.com/1uvu/bitlog/collector/clientmgr"
+	"github.com/1uvu/bitlog/collector/event"
+	"github.com/1uvu/bitlog/pkg/pool"
 )
 
 type LogHandler struct {

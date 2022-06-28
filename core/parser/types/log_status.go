@@ -1,11 +1,12 @@
 package types
 
-import "github.com/1uvu/bitlog/core/pkg/id"
+import "github.com/1uvu/bitlog/pkg/id"
 
 type (
 	StatusLog struct {
-		//// inject
-		//Type StatusType // Type=StatueTypeChain now
+		// inject
+		Type      StatusType
+		Timestamp Timestamp
 
 		// parsing with inject
 		Raw []byte

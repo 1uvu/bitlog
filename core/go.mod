@@ -1,4 +1,4 @@
-module github.com/1uvu/bitlog/core
+module github.com/1uvu/bitlog
 
 go 1.18
 

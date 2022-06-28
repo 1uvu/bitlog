@@ -1,19 +1,18 @@
 package types
 
 import (
-	"github.com/1uvu/bitlog/core/pkg/id"
-	"github.com/1uvu/bitlog/types"
+	"github.com/1uvu/bitlog/pkg/id"
 )
 
 type (
 	EventLogLinkedList struct {
-		Timeline   types.Timeline
+		Timeline   Timeline
 		Head, Tail *EventLog
 	}
 	EventLog struct {
 		// inject
 		Type      EventType
-		Timestamp types.Timestamp
+		Timestamp Timestamp
 
 		// parsing with inject
 		Raw []byte

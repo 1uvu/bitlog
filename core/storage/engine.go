@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"github.com/1uvu/bitlog/core/storage/driver"
+	"github.com/1uvu/bitlog/storage/driver"
 )
 
 // Engine is a wrapper of Driver

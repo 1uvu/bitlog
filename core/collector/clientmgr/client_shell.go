@@ -1,7 +1,7 @@
 package clientmgr
 
 import (
-	"github.com/1uvu/bitlog/core/pkg/config"
+	"github.com/1uvu/bitlog/pkg/config"
 )
 
 type ShellClient struct {

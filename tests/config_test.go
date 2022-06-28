@@ -4,7 +4,7 @@ import (
 	"log"
 	"testing"
 
-	"github.com/1uvu/bitlog/core/pkg/config"
+	"github.com/1uvu/bitlog/pkg/config"
 )
 
 func TestNewConfig(t *testing.T) {

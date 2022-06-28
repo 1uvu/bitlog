@@ -3,11 +3,11 @@ package collector
 import (
 	"context"
 
-	"github.com/1uvu/bitlog/core/collector/clientmgr"
-	"github.com/1uvu/bitlog/core/collector/conn"
-	"github.com/1uvu/bitlog/core/collector/handler"
-	"github.com/1uvu/bitlog/core/pkg/config"
-	"github.com/1uvu/bitlog/core/pkg/pool"
+	"github.com/1uvu/bitlog/collector/clientmgr"
+	"github.com/1uvu/bitlog/collector/conn"
+	"github.com/1uvu/bitlog/collector/handler"
+	"github.com/1uvu/bitlog/pkg/config"
+	"github.com/1uvu/bitlog/pkg/pool"
 )
 
 // todo mod, move collector schedule into app backend

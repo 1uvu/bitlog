@@ -3,7 +3,7 @@ package config
 import (
 	"time"
 
-	"github.com/1uvu/bitlog/core/pkg/errorx"
+	"github.com/1uvu/bitlog/pkg/errorx"
 
 	"github.com/spf13/viper"
 )

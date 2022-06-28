@@ -4,7 +4,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/1uvu/bitlog/core/pkg/config"
+	"github.com/1uvu/bitlog/pkg/config"
+
 	"github.com/btcsuite/btcd/rpcclient"
 )
 

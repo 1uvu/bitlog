@@ -56,6 +56,6 @@ func (b *Block) String() string {
 		b.BlockHash.String(),
 		b.Header,
 		b.Txn,
-		utils.TimeLocal(b.ConnectTime),
+		utils.TimeStrLocal(b.ConnectTime),
 	)
 }

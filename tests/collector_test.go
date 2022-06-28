@@ -7,12 +7,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/1uvu/bitlog/core/collector"
-	"github.com/1uvu/bitlog/core/collector/conn"
-	"github.com/1uvu/bitlog/core/collector/event"
-	// "github.com/1uvu/bitlog/core/collector/handler"
-	"github.com/1uvu/bitlog/core/pkg/config"
-	"github.com/1uvu/bitlog/core/pkg/utils"
+	"github.com/1uvu/bitlog/collector"
+	"github.com/1uvu/bitlog/collector/conn"
+	"github.com/1uvu/bitlog/collector/event"
+	// "github.com/1uvu/bitlog/collector/handler"
+	"github.com/1uvu/bitlog/pkg/config"
+	"github.com/1uvu/bitlog/pkg/utils"
 
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
 	"github.com/fsnotify/fsnotify"

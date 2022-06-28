@@ -1,7 +1,7 @@
 package types
 
 import (
-	"github.com/1uvu/bitlog/core/pkg/id"
+	"github.com/1uvu/bitlog/pkg/id"
 )
 
 type (
