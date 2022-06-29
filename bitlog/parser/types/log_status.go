@@ -4,28 +4,24 @@ import "github.com/1uvu/bitlog/pkg/id"
 
 type (
 	StatusLog struct {
-		// inject
-		Type      StatusType
-		Timestamp Timestamp
-
-		// parsing with inject
-		Raw []byte
+		// status detail
+		Status RawLog
 
 		// resolver
-		ID                id.ID
+		ID            id.ID
+		PrevStatusLog *StatusLog // last status
+		NextStatusLog *StatusLog // create when status changed
+
 		RelevantEventLogs *EventLogLinkedList
 		RelevantChangeLog *ChangeLog
-		PrevStatusLog     *StatusLog // last status
-		NextStatusLog     *StatusLog // create when status changed
 	}
-	StatusType string
 )
 
 // TODO
 const (
-	StatueTypeChain   = StatusType("chain")
-	StatueTypeNetwork = StatusType("network")
-	StatusTypeUnknown = StatusType("unknown")
+	StatueTypeChain   = RawLogType("status_chain")
+	StatueTypeNetwork = RawLogType("status_network")
+	StatusTypeUnknown = RawLogType("status_unknown")
 )
 
 func (statusLog *StatusLog) String() string {

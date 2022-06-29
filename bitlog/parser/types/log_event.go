@@ -6,45 +6,41 @@ import (
 
 type (
 	EventLogLinkedList struct {
-		Timeline   Timeline
+		Timeline   Timeline // TODO timestamp + event = timeline
 		Head, Tail *EventLog
 	}
 	EventLog struct {
-		// inject
-		Type      EventType
-		Timestamp Timestamp
-
-		// parsing with inject
-		Raw []byte
+		// event detail
+		EventRaw RawLog
 
 		// resolver
-		ID                id.ID
+		ID           id.ID
+		PrevEventLog *EventLog // RelevantStatusLog.RelevantEventLogs.Tail
+		NextEventLog *EventLog // create when happen a new event
+
 		RelevantStatusLog *StatusLog
-		PrevEventLog      *EventLog // RelevantStatusLog.RelevantEventLogs.Tail
-		NextEventLog      *EventLog // create when happen a new event
 	}
-	EventType string
 )
 
 // TODO
 const (
 	// EventType for ChangeTypeBlock
-	EventTypeBlockArrival       = EventType("block_arrival")
-	EventTypeBlockVerifySuccess = EventType("block_verify_success")
-	EventTypeBlockVerifyFailed  = EventType("block_verify_failed")
-	EventTypeBlockConnect       = EventType("block_connect")
-	EventTypeBlockDisconnect    = EventType("block_disconnect")
+	EventTypeBlockArrival       = RawLogType("event_block_arrival")
+	EventTypeBlockVerifySuccess = RawLogType("event_block_verify_success")
+	EventTypeBlockVerifyFailed  = RawLogType("event_block_verify_failed")
+	EventTypeBlockConnect       = RawLogType("event_block_connect")
+	EventTypeBlockDisconnect    = RawLogType("event_block_disconnect")
 	// others block event...
 
 	// EventType for ChangeTypeChain
-	EventTypeChainIncrease   = EventType("chain_increase")
-	EventTypeChainDecrease   = EventType("chain_decrease")
-	EventTypeChainReorganize = EventType("chain_reorganize")
+	EventTypeChainIncrease   = RawLogType("event_chain_increase")
+	EventTypeChainDecrease   = RawLogType("event_chain_decrease")
+	EventTypeChainReorganize = RawLogType("event_chain_reorganize")
 	// others chain event...
 
-	EventTypeFork    = EventType("fork")
-	EventTypeNetwork = EventType("network")
-	EventTypeUnknown = EventType("unknown")
+	EventTypeFork    = RawLogType("event_fork")
+	EventTypeNetwork = RawLogType("event_network")
+	EventTypeUnknown = RawLogType("event_unknown")
 )
 
 func (eventLog *EventLog) String() string {

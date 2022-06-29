@@ -6,30 +6,26 @@ import (
 
 type (
 	ChangeLog struct {
-		// inject
-		Type      ChangeType
-		Timestamp Timestamp
-
-		// parsing with inject
-		Raw []byte
+		// change detail
+		Change RawLog
 
 		// resolver
-		ID                 id.ID
+		ID            id.ID
+		PrevChangeLog *ChangeLog // RelevantStatusLogs.Tail.RelevantChangeLog
+		NextChangeLog *ChangeLog // create when IsValid=true
+
 		IsValid            bool
 		RelevantStatusLogs []*StatusLog
-		PrevChangeLog      *ChangeLog // RelevantStatusLogs.Tail.RelevantChangeLog
-		NextChangeLog      *ChangeLog // create when IsValid=true
 	}
-	ChangeType string
 )
 
 // TODO
 const (
-	ChangeTypeBlock   = ChangeType("block")
-	ChangeTypeChain   = ChangeType("chain")
-	ChangeTypeFork    = ChangeType("fork")
-	ChangeTypeNetwork = ChangeType("network")
-	ChangeTypeUnknown = ChangeType("unknown")
+	ChangeTypeBlock   = RawLogType("change_block")
+	ChangeTypeChain   = RawLogType("change_chain")
+	ChangeTypeFork    = RawLogType("change_fork")
+	ChangeTypeNetwork = RawLogType("change_network")
+	ChangeTypeUnknown = RawLogType("change_unknown")
 )
 
 func (changeLog *ChangeLog) String() string {
