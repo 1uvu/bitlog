@@ -16,7 +16,7 @@ if [ -d "${BTCD_ROOT_DIR}" ]; then
 fi
 mkdir -p "${BTCD_ROOT_DIR}"
 echo "copy peer example to peer ${CONTAINER_NAME}"
-cp peers/peer-example/btcd.conf "${BTCD_ROOT_DIR}"/
+cp peer-example/btcd.conf "${BTCD_ROOT_DIR}"/
 
 echo "bootstrap peer"
 docker-compose -f docker-compose-tmpl.yaml up -d

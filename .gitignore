@@ -30,6 +30,7 @@ bitlog-cli.exe
 *.sercet
 
 # output and data path
+peers/
 out/
 output/
 data/
