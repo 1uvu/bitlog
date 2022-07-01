@@ -11,13 +11,13 @@ networks:
   bitlog_mainnet:
     ipam:
       config:
-        - subnet: 172.16.0.0/24
+        - subnet: ${SUBNET_CIDR:-172.16.0.0/24}
 
 services:
   mainnet:
     container_name: ${CONTAINER_NAME:-peer0.net0.mainnet}
     hostname: ${HOSTNAME:-peer0.net0.mainnet}
-    image: bitlog/btcd:latest
+    image: ${IMAGE:-bitlog/btcd:latest}
     labels:
       service: bitlog_btcd
     # environment:
@@ -31,7 +31,7 @@ services:
         max-size: "1g"
     command: btcd
     volumes:
-      - ${BTCD_ROOT_DIR:-./peers/peer0/}:/root/.btcd/
+      - ${BTCD_ROOT_DIR}:/root/.btcd/
     ports:
       - ${PORT_PEER:-8333}:${PORT_PEER:-8333}
       - ${PORT_RPC:-8334}:${PORT_RPC:-8334}
