@@ -7,7 +7,7 @@ cp .env.example .env
 source .env
 
 if [ -z "${BTCD_ROOT_DIR}" ]; then
-  echo "error: peer root dir is empty"
+  echo "error: peer root dir not set"
   exit 255
 fi
 if [ -d "${BTCD_ROOT_DIR}" ]; then
