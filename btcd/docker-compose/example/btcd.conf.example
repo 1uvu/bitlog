@@ -10,8 +10,8 @@ testnet=1
 ## for mainnet 8333 8334
 ## for simnet 18333 18334
 ## for signet 38333 38334
-listen=:8333
-rpclisten=:8334
+listen=:18555
+rpclisten=:18556
 ## password
 rpcpass=admin
 rpcuser=admin

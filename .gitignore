@@ -30,6 +30,7 @@ bitlog-cli.exe
 *.sercet
 
 # output and data path
+tmpl/
 peers/
 out/
 output/
@@ -37,6 +38,7 @@ data/
 
 # temporary and backuping path
 tmp/
+temp/
 bak/
 
 # Binaries for programs and plugins
