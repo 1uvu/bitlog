@@ -1,25 +1,25 @@
 version: '3'
 
 volumes:
-  mainnet:
+  bitlog_peer:
 
 # 0 Note that you need to build docker image manually use Dockerfile. Follow docs/docker-compose.md
 # 1 Note that you can add followings into hosts file to use dotest
 # 172.16.0.20 peer0.net0.test.net
 
 networks:
-  bitlog_mainnet:
+  bitlog_peer_network:
     ipam:
       config:
         - subnet: ${SUBNET_CIDR:-172.16.0.0/24}
 
 services:
-  mainnet:
-    container_name: ${CONTAINER_NAME:-peer0.net0.mainnet}
-    hostname: ${HOSTNAME:-peer0.net0.mainnet}
+  bitlog_peer:
+    container_name: ${CONTAINER_NAME:-peer0.net0.testnet}
+    hostname: ${HOSTNAME:-peer0.net0.testnet}
     image: ${IMAGE:-bitlog/btcd:latest}
     labels:
-      service: bitlog_btcd
+      service: bitlog_peer_service
     # environment:
     #   -
     working_dir: /bitlog/
@@ -33,8 +33,8 @@ services:
     volumes:
       - ${BTCD_ROOT_DIR}:/root/.btcd/
     ports:
-      - ${PORT_PEER:-8333}:${PORT_PEER:-8333}
-      - ${PORT_RPC:-8334}:${PORT_RPC:-8334}
+      - ${PORT_PEER:-18555}:${PORT_PEER:-18555}
+      - ${PORT_RPC:-18556}:${PORT_RPC:-18556}
     networks:
-      bitlog_mainnet:
+      bitlog_peer_network:
         ipv4_address: ${SUBNET_ADDRESS:-172.16.0.10}
