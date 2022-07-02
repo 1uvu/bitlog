@@ -4,9 +4,7 @@ volumes:
   bitlog_peer:
 networks:
   bitlog_peer_network:
-    ipam:
-      config:
-        - subnet: ${SUBNET_CIDR:-172.16.0.0/24}
+    external: true
 services:
   bitlog_peer:
     container_name: ${CONTAINER_NAME:-peer0.net0.testnet}
