@@ -25,7 +25,7 @@ services:
         max-size: "1g"
     command: btcd
     volumes:
-      - ./${CONTAINER_NAME:-peer0.net0.testnet}/${BTCD_ROOT_DIR:-.btcd/}:/root/.btcd/
+      - ${BTCD_ROOT_DIR:-.btcd/}:/root/.btcd/
     ports:
       - ${PORT_PEER_LOCAL:-18555}:${PORT_PEER:-18555}
       - ${PORT_RPC_LOCAL:-18556}:${PORT_RPC:-18556}

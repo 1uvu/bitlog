@@ -48,18 +48,19 @@ function main() {
   cp "${pwd}/tmpl/btcd.conf.tmpl" "${pwd}/${temp_dir}/${BTCD_ROOT_DIR}/btcd.conf"
 
   echo "copy tmpl to peer ${CONTAINER_NAME}"
-  mkdir -p "${pwd}/${CONTAINER_NAME}/"
-  cp "${pwd}/${temp_dir}/.env" "${pwd}/${CONTAINER_NAME}/"
-  cp -r "${pwd}/${temp_dir}/${BTCD_ROOT_DIR}" "${pwd}/${CONTAINER_NAME}/"
-  cp "${pwd}/docker-compose.yaml.tmpl" "${pwd}/${CONTAINER_NAME}/docker-compose.yaml"
+  mkdir -p "${pwd}/peers/${CONTAINER_NAME}/"
+  cp "${pwd}/${temp_dir}/.env" "${pwd}/peers/${CONTAINER_NAME}/"
+  cp -r "${pwd}/${temp_dir}/${BTCD_ROOT_DIR}" "${pwd}/peers/${CONTAINER_NAME}/"
+  cp "${pwd}/docker-compose.yaml.tmpl" "${pwd}/peers/${CONTAINER_NAME}/docker-compose.yaml"
 
   echo "source env"
-  cd "${pwd}/${CONTAINER_NAME}" || exit
+  cd "${pwd}/peers/${CONTAINER_NAME}" || exit
   source .env
 
   echo "bootstrap peer"
   docker-compose up -d
 
+  rm -rf "${pwd}/${temp_dir}"
   echo "bootstrap success"
   exitWithError
 }
