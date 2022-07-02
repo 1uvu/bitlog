@@ -29,51 +29,62 @@ function prepare() {
   mkdir "${temp_dir}"
 }
 
+function bootstrap() {
+  infoln "create network if not exist"
+  docker network create --driver=bridge --subnet="${SUBNET_CIDR}" "${subnet_name}"
+  infoln "up peer container"
+  docker-compose up -d
+}
+
+function infoln() {
+    echo "===[info]: ${1}"
+}
+
+function errorln() {
+    echo "===[error]: ${1}"
+}
+
 function exitWithError() {
   errorMsg=$1
   if [ -n "${errorMsg}" ]; then
-    echo "error: ${errorMsg}"
+    errorln "${errorMsg}"
   fi
   if [ -d "${temp_dir}" ]; then
-    echo "clean temp files"
+    infoln "clean temp files"
     sudo rm -rf "${pwd}"/"${temp_dir}"/
   fi
   exit 0
 }
 
-function bootstrap() {
-  docker network create --driver=bridge --subnet="${SUBNET_CIDR}" "${subnet_name}"
-  docker-compose up -d
-}
-
 function main() {
-  echo "precheck process"
+  set -x
+  infoln "precheck process"
   precheck
 
-  echo "prepare process"
+  infoln "prepare process"
   prepare
 
-  echo "copy .env tmpl"
+  infoln "copy .env tmpl"
   cp "${pwd}/tmpl/.env.tmpl" "${temp_dir}/.env"
-  echo "copy btcd.conf tmpl"
+  infoln "copy btcd.conf tmpl"
   cp "${pwd}/tmpl/btcd.conf.tmpl" "${pwd}/${temp_dir}/btcd.conf"
 
-  echo "copy tmpl to peer ${CONTAINER_NAME}"
+  infoln "copy tmpl to peer ${CONTAINER_NAME}"
   mkdir -p "${pwd}/peers/${CONTAINER_NAME}/"
   cp "${pwd}/${temp_dir}/.env" "${pwd}/peers/${CONTAINER_NAME}/"
   mkdir "${pwd}/peers/${CONTAINER_NAME}/${BTCD_ROOT_DIR}/"
   cp "${pwd}/${temp_dir}/btcd.conf" "${pwd}/peers/${CONTAINER_NAME}/${BTCD_ROOT_DIR}/"
   cp "${pwd}/docker-compose.yaml.tmpl" "${pwd}/peers/${CONTAINER_NAME}/docker-compose.yaml"
 
-  echo "source env"
+  infoln "source env"
   cd "${pwd}/peers/${CONTAINER_NAME}" || exit
   source .env
 
-  echo "bootstrap peer"
+  infoln "bootstrap peer"
   bootstrap
 
   rm -rf "${pwd}/${temp_dir}"
-  echo "bootstrap success"
+  infoln "bootstrap success"
   exitWithError
 }
 
